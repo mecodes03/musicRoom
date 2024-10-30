@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 90%; /* Subdued background for reduced brightness */
+    --foreground: 220 50% 20%; /* Deepened foreground for better readability */
+    --card: 0 0% 92%; /* Softer card background */
+    --card-foreground: 220 60% 12%; /* Darkened text on card for contrast */
+    --popover: 0 0% 92%; /* Similar to card, with slight adjustment */
+    --popover-foreground: 220 60% 12%; /* Consistent with card-foreground */
+    --primary: 260 80% 45%; /* Richer primary with lowered brightness */
+    --primary-foreground: 220 40% 98%; /* Lightened for readability on primary */
+    --secondary: 220 15% 85%; /* Subdued secondary */
+    --secondary-foreground: 220 40% 18%; /* Darkened for visual balance */
+    --muted: 220 15% 85%; /* Matches secondary for a consistent soft effect */
+    --muted-foreground: 220 10% 38%; /* Darkened muted text */
+    --accent: 200 15% 70%; /* Slightly darker, softer accent */
+    --accent-foreground: 220 35% 15%; /* Bolder, darker foreground for accent */
+    --destructive: 0 70% 45%; /* More subdued red for destructive actions */
+    --destructive-foreground: 210 20% 98%; /* Lightened foreground */
+    --border: 220 13% 80%; /* Softened border to blend with background */
+    --input: 220 13% 80%; /* Matching input for consistency */
+    --ring: 262 70% 50%; /* Richer ring color */
+    --radius: 0.3rem; /* Keeping radius for consistency */
+    --chart-1: 12 60% 50%; /* Muted chart colors for smoother visuals */
+    --chart-2: 173 50% 30%;
+    --chart-3: 197 30% 20%;
+    --chart-4: 43 60% 55%;
+    --chart-5: 27 75% 55%;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Button Fill Effect */
+.fill-animation {
+  transform-origin: bottom;
+}
+.group:hover .fill-animation {
+  transform: scaleY(1); /* Activates the fill */
+}
+
+/* Circular Border Animation */
+.border-animation {
+  border-radius: 9999px;
+  animation: draw-border 0.5s ease forwards;
+}
+
+/* Keyframes for drawing the border in a circular fashion */
+@keyframes draw-border {
+  0% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: red;
+  }
+}
