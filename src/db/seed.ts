@@ -1,1 +1,1 @@
-console.log("clear the DB.");
+// seed some data, if you want that is.

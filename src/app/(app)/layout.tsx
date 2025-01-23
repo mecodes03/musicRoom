@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { Header } from "../_header/Header";
-import Footer from "@/components/Footer";
+import { Header } from "./_header/Header";
+import { ChevronRightIcon } from "lucide-react";
+import ScrollBorder from "./scroll-border";
 
 interface LayoutProps {
   children: ReactNode;
@@ -14,22 +15,22 @@ export const metadata = {
 
 const Layout = async ({ children }: LayoutProps) => {
   return (
-    <div>
-      <div className="relative min-h-screen pt-20 pb-20">
-        <div className="fixed h-20 top-0 w-full z-10">
+    <>
+      <div className="relative min-h-screen">
+        <header className="sticky h-20 top-0 w-full z-10">
           <Header />
-        </div>
+        </header>
 
-        <div className="overflow-y-auto">
+        <main className="overflow-y-auto max-w-screen-xl mx-auto flex-1 min-h-[calc(100vh-160px)]">
           {children}
-          <div className="">
-            <Footer />
-          </div>
-        </div>
+        </main>
 
-        <div className="fixed bottom-0 w-full h-20 bg-gray-400 z-20"></div>
+        <main className="sticky bottom-0 w-full h-20 bg-gray-400 z-20"></main>
       </div>
-    </div>
+
+      {/* this belew component is gonna change border visibility based on the scroll position */}
+      <ScrollBorder />
+    </>
   );
 };
 

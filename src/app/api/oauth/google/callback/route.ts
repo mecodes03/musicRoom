@@ -28,7 +28,6 @@ export async function GET(request: Request): Promise<Response> {
 
   try {
     const tokens = await google.validateAuthorizationCode(code, codeVerifier);
-    console.log(tokens.refreshToken);
     const response = await fetch(
       "https://openidconnect.googleapis.com/v1/userinfo",
       {
@@ -39,10 +38,7 @@ export async function GET(request: Request): Promise<Response> {
     );
 
     const googleUser: GoogleUser = await response.json();
-    console.log("googleUserEmail : ", googleUser.email);
-
     const existingAccount = await getAccountByGoogleIdUseCase(googleUser.sub);
-    console.log("accountByGoogleId : ", existingAccount?.email);
 
     if (existingAccount) {
       await setSession({
@@ -62,7 +58,6 @@ export async function GET(request: Request): Promise<Response> {
 
     // not likend yet. now we'll link (but first we'll have to see if spotify account exists with this email. if yes, then we'll just link the google account to user.if not, we'll create new user and then link the account )
     const spotifyAccount = await getSpotifyAccountByEmail(googleUser.email);
-    console.log("spotifyAccount : ", spotifyAccount?.email);
 
     let userId: number;
 
@@ -82,9 +77,9 @@ export async function GET(request: Request): Promise<Response> {
         Location: afterLoginUrl,
       },
     });
-  } catch (e) {
+  } catch (e: any) {
     // the specific error message depends on the provider
-    console.log(e);
+    console.log(e.message);
     if (e instanceof OAuth2RequestError) {
       // invalid code
       return new Response(null, {

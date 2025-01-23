@@ -1,25 +1,23 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-
-import { Libre_Franklin } from "next/font/google";
-import { Archivo } from "next/font/google";
+import localFont from "next/font/local";
 
 import NextTopLoader from "nextjs-toploader";
 
 import { Providers } from "../providers/Providers";
 import { cn } from "@/lib/utils";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-archivo",
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
 });
 
-const libre_franklin = Libre_Franklin({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-libre_franklin",
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
@@ -39,8 +37,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background antialiased",
-          archivo.variable + " " + libre_franklin.variable
+          "min-h-screen bg-background antialiased font-segoe",
+          geistSans.variable + " " + geistMono.variable
         )}
       >
         <NextTopLoader />

@@ -8,17 +8,17 @@ const page = () => {
     <div className="flex fixed w-full top-0 h-screen bg-background">
       {/* Left side - Image */}
 
-      <div className="hidden relative lg:flex w-1/2 bg-gradient-to-br from-background to-primary-foreground dark:from-muted dark:to-background items-center justify-center">
-        <Link href="/">
-          <Image
-            className="absolute top-6 left-6"
-            src={"/music.png"}
-            height={80}
-            width={80}
-            alt="music"
-          />
-        </Link>
+      <Link href="/">
+        <Image
+          className="absolute w-12 md:w-16 z-40 h-fit top-6 left-6"
+          src={"/music.png"}
+          height={80}
+          width={80}
+          alt="music"
+        />
+      </Link>
 
+      <div className="hidden relative lg:flex w-1/2 bg-gradient-to-br from-background to-primary-foreground dark:from-muted dark:to-background items-center justify-center">
         <div className="max-w-md text-center">
           <h1 className="mb-3 text-5xl text-primary font-extrabold">
             Welcome to The MusicRoom

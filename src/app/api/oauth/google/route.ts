@@ -30,7 +30,6 @@ export async function GET(): Promise<Response> {
 
   url.searchParams.set("access_type", "offline");
   url.searchParams.set("prompt", "consent");
-  console.log(url.href);
 
   return Response.redirect(url);
 }

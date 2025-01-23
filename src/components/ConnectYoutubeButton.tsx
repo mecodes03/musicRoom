@@ -1,9 +1,9 @@
 "use client";
+
 import { ClassValue } from "clsx";
-import { ButtonProps, buttonVariants } from "./ui/button";
+import { Button, ButtonProps } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { YoutubeLogo } from "./YoutubeLogo";
-import Link from "next/link";
 
 export const ConnectYoutubeButton = ({
   className,
@@ -15,28 +15,27 @@ export const ConnectYoutubeButton = ({
   size?: ButtonProps["size"];
 }) => {
   return (
-    <Link
+    <Button
+      variant={variant}
+      size={size}
       className={cn(
-        buttonVariants({ variant, size }),
-        "relative flex items-center gap-2 rounded-full px-6 py-8 overflow-hidden group",
-        "transition-all duration-300 ease-in-out transform hover:scale-110 active:scale-95",
+        "relative flex items-center gap-2 rounded-full overflow-hidden group transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 hover:bg-gradient-to-r hover:from-red-300 hover:to-red-800 hover:border hover:border-red-400",
+        {
+          "px-6 py-8": size === "lg",
+          "px-4 py-2": size === "sm",
+          "border border-transparent": variant !== "outline",
+        },
         className
       )}
-      href="/api/oauth/google"
     >
-      <span className="absolute inset-0 rounded-full bg-gradient-to-r from-red-300 to-red-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-
-      <div className="relative z-10 flex items-center gap-3 text-white">
+      <div className="flex items-center gap-2 text-white">
         <YoutubeLogo
-          height={24}
-          width={24}
-          className="transition-transform duration-200 ease-in-out transform group-hover:rotate-12 group-hover:scale-125"
+          height={38}
+          width={38}
+          className="rounded-full h-7 w-7 transition-colors duration-300"
         />
-
-        <span className="text-sm font-semibold tracking-wider">
-          Connect Youtube
-        </span>
+        <span className="text-sm font-semibold">Connect Youtube</span>
       </div>
-    </Link>
+    </Button>
   );
 };

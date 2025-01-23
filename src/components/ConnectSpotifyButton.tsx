@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { SpotifyLogo } from "./SpotifyLogo";
 import { Button, ButtonProps } from "./ui/button";
@@ -17,21 +19,22 @@ export const ConnectSpotifyButton = ({
       variant={variant}
       size={size}
       className={cn(
-        "relative flex items-center gap-2 rounded-full px-6 py-8 overflow-hidden group",
-        "transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95",
+        "relative flex items-center gap-2 rounded-full overflow-hidden group transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 hover:bg-gradient-to-r hover:from-green-300 hover:to-green-800 hover:border hover:border-green-400",
+        {
+          "px-6 py-8": size === "lg",
+          "px-4 py-2": size === "sm",
+          "border border-transparent": variant !== "outline",
+        },
         className
       )}
     >
-      <span className="absolute inset-0 rounded-full bg-gradient-to-r from-green-300 to-green-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-      <div className="relative z-10 flex items-center gap-3 text-white">
+      <div className="flex items-center gap-2 text-white">
         <SpotifyLogo
-          height={24}
-          width={24}
-          className="transition-transform duration-200 ease-in-out transform group-hover:rotate-12"
+          height={38}
+          width={38}
+          className="rounded-full h-7 w-7 transition-colors duration-300 group-hover:border group-hover:border-green-400"
         />
-        <span className="text-sm font-bold tracking-wide">
-          Connect to Spotify
-        </span>
+        <span className="text-sm font-semibold">Connect Spotify</span>
       </div>
     </Button>
   );

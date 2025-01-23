@@ -1,11 +1,11 @@
 import "server-only";
 
-import { AuthenticationError } from "../../app/util";
+import { AuthenticationError } from "@/app/util";
 import { createSession, generateSessionToken, validateRequest } from "./auth";
 import { cache } from "react";
 import { cookies } from "next/headers";
-import { UserId } from "../../data-access/types";
-import { env } from "../../env";
+import { UserId } from "@/data-access/types";
+import { env } from "@/env";
 
 const SESSION_COOKIE_NAME = "session";
 
@@ -33,22 +33,35 @@ export function getSessionToken(): string | undefined {
   return cookies().get(SESSION_COOKIE_NAME)?.value;
 }
 
-export const getCurrentUser = cache(async () => {
-  const { user } = await validateRequest();
-  return user ?? undefined;
-});
+export type UserSession = {
+  youtube: {
+    accessToken: string;
+  } | null;
+  spotify: {
+    accessToken: string;
+  } | null;
+  id: UserId;
+  createdAt: Date;
+};
 
-export const getConnectedAccounts = cache(async () => {
-  const { session } = await validateRequest();
-  console.log(session);
+export const getCurrentUser = cache(
+  async (): Promise<UserSession | undefined> => {
+    console.log("getting current user");
+    const { user, session } = await validateRequest();
 
-  return session
-    ? {
-        spotify: session.spotifyAccessToken ?? null,
-        youtube: session.googleAccessToken ?? null,
-      }
-    : undefined;
-});
+    return user
+      ? {
+          ...user,
+          youtube: session.googleAccessToken
+            ? { accessToken: session.googleAccessToken }
+            : null,
+          spotify: session.spotifyAccessToken
+            ? { accessToken: session.spotifyAccessToken }
+            : null,
+        }
+      : undefined;
+  }
+);
 
 export const assertAuthenticated = async () => {
   const user = await getCurrentUser();

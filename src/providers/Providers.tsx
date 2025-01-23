@@ -1,18 +1,16 @@
 import { ReactNode } from "react";
 import { ThemeProvider } from "./theme-provider";
-import { RootProvider } from "fumadocs-ui/provider";
+import { ReactQueryProvider } from "./react-query-provider";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <RootProvider>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-        disableTransitionOnChange
-      >
-        {children}
-      </ThemeProvider>
-    </RootProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ReactQueryProvider>{children}</ReactQueryProvider>
+    </ThemeProvider>
   );
 }

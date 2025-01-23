@@ -21,8 +21,7 @@ export async function createProfile(
 }
 
 export async function getProfileByUserId(userId: UserId) {
-  const profile = await database.query.profiles.findFirst({
+  return await database.query.profiles.findFirst({
     where: eq(profiles.userId, userId),
   });
-  return profile ?? null;
 }

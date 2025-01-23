@@ -66,8 +66,6 @@ export async function createSession(
 
 export async function validateRequest(): Promise<SessionValidationResult> {
   const sessionToken = getSessionToken();
-  console.log(sessionToken);
-
   if (!sessionToken) {
     return { session: null, user: null };
   }
@@ -82,8 +80,6 @@ export async function validateSessionToken(
   const sessionInDb = await database.query.sessions.findFirst({
     where: eq(sessions.id, sessionId),
   });
-
-  console.log("sessionInDb", sessionInDb);
 
   if (!sessionInDb) {
     return { session: null, user: null };
