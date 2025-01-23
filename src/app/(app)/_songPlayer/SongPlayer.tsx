@@ -28,7 +28,7 @@ import {
 import PlayerStates from "youtube-player/dist/constants/PlayerStates";
 import { Slider } from "@/components/ui/slider";
 
-import { usePlayerState } from "./contexts/PlayerStateContext";
+// import { usePlayerState } from "./contexts/PlayerStateContext";
 import { cn, formatCount } from "@/lib/utils";
 import { usePlayerStore } from "@/store/song-player-store";
 import { useDebounce } from "@/hooks/use-debounce";
@@ -68,7 +68,7 @@ const SongPlayer = () => {
   const [_currentSong, _setCurrentSong] =
     React.useState<typeof currentSong>(currentSong);
 
-  const { playerState, setPlayerState } = usePlayerState();
+//   const { playerState, setPlayerState } = usePlayerState();
   const [musicDuration, setMusicDuration] = React.useState<number>(0);
   const [currentTime, setCurrentTime] = React.useState<number>(0);
   const [volume, setVolume] = React.useState<number>(75);
