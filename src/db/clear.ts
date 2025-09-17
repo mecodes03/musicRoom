@@ -14,10 +14,11 @@ async function main() {
   await database.execute(sql.raw(`GRANT ALL ON SCHEMA public TO postgres;`));
   await database.execute(sql.raw(`GRANT ALL ON SCHEMA public TO public;`));
   await database.execute(
-    sql.raw(`COMMENT ON SCHEMA public IS 'standard public schema';`)
+    sql.raw(`COMMENT ON SCHEMA public IS 'standard public schema';`),
   );
 
   await pg.end();
 }
 
 main();
+

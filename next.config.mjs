@@ -12,7 +12,7 @@ const nextConfig = {
         ],
     },
     env: {
-       DATABASE_URL: process.env.DATABASE_URL,
+        DATABASE_URL: process.env.DATABASE_URL,
         DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
         YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,

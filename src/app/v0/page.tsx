@@ -29,6 +29,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 export default function MusicHub() {
   const [activeTab, setActiveTab] = React.useState("home");
@@ -79,7 +80,7 @@ export default function MusicHub() {
                   >
                     {playlist}
                   </Button>
-                )
+                ),
               )}
             </div>
           </div>
